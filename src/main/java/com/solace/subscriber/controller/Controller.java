@@ -43,6 +43,7 @@ public class Controller {
         properties.setProperty(JCSMPProperties.USERNAME, userName);
         properties.setProperty(JCSMPProperties.VPN_NAME, vpnName);
         properties.setProperty(JCSMPProperties.PASSWORD, password);
+        properties.setProperty(JCSMPProperties.IGNORE_DUPLICATE_SUBSCRIPTION_ERROR, true);
         session= JCSMPFactory.onlyInstance().createSession(properties);
         session.connect();
         topic = JCSMPFactory.onlyInstance().createTopic("tutorial/topic");
@@ -63,9 +64,8 @@ public class Controller {
                 if (msg instanceof TextMessage) {
                     System.out.printf("TextMessage received: '%s'%n",
                             ((TextMessage)msg).getText());
-                    /*String new = (TextMessage)msg).getText();
-                    list.add((String)msg));*/
-                    list.add(msg.toString());
+                    String str = ((TextMessage)msg).getText();
+                    list.add(str);
                 } else {
                     System.out.println("Message received.");
                 }
