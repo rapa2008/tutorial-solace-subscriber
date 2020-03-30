@@ -51,6 +51,11 @@ public class Controller {
 
     }
 
+    @GetMapping("/message/all")
+    public List<String> getAllMessages(){
+        return list;
+    }
+
     @GetMapping("/message")
     public List<String> receiveMessage() throws JCSMPException {
 
